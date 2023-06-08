@@ -1,0 +1,128 @@
+<header>
+  <nav
+    class="navbar navbar-expand-lg navbar-light bg-white border-bottom border-top"
+  >
+    <div class="container">
+      <a class="navbar-brand fs-2 fw-bold" href="#"
+        ><span class="textBlur">Shop Cart</span></a
+      >
+
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0 text-center">
+          <li class="nav-item">
+            <a
+              class="nav-link fw-semibold text-uppercase text-black me-1"
+              href="#"
+              >Home</a
+            >
+          </li>
+
+          <li class="nav-item">
+            <a
+              class="nav-link fw-semibold text-uppercase text-black me-1"
+              (click)="redirectToSale()"
+              >Sale</a
+            >
+          </li>
+
+          <li class="nav-item dropdown">
+            <a
+              class="nav-link dropdown-toggle cart fw-semibold text-uppercase text-black me-1"
+              href="#"
+              id="navbarDropdown"
+              role="button"
+              data-bs-toggle="dropdown"
+              aria-expanded="false"
+            >
+              <i class="fa fa-cart-shopping fs-5" style="color: #202122"></i>
+              <span
+                class="position-absolute translate-middle badge rounded-pill bg-danger"
+              >
+                {{ cartProducts.length }}
+                <span class="visually-hidden">unread messages</span>
+              </span>
+            </a>
+
+            <div class="dropdown-menu">
+              <div class="CartContainer">
+                <div class="row">
+                  <div class="col-6">Your Cart</div>
+                </div>
+
+                <div class="row pt-1" *ngFor="let cartProduct of cartProducts">
+                  <div class="col-4">
+                    <img
+                      class="img-fluid"
+                      style="height: 60px; width: 60px; border-radius: 50%"
+                      [src]="cartProduct.productImageUrl"
+                      class="card-img-top"
+                    />
+                  </div>
+                  <div class="col-3">
+                    {{ cartProduct.productName }}
+                  </div>
+                  <div class="col-2">
+                    {{ cartProduct.quantity + 1 }}
+                  </div>
+                  <div class="col-2 text-end">
+                    ${{ cartProduct.productPrice }}
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-3"></div>
+                  <div class="col-9">
+                    <hr />
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-2"></div>
+                  <div class="col-2"></div>
+                  <div class="col-4">
+                    <div class="Subtotal">Sub-Total</div>
+                    <div>
+                      <small> {{ cartProducts.length }} items</small>
+                    </div>
+                  </div>
+                  <div class="col-4 text-end">
+                    <strong> ${{ subTotal }}</strong>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-12 text-end">
+                    <button
+                      class="btn btn-sm btn-success"
+                      (click)="redirectToSale()"
+                    >
+                      Checkout
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<section id="product">
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</section>
